@@ -2,11 +2,11 @@
 
 import { Toaster } from "react-hot-toast"
 
-const Providers = ({chilndren}) => {
+const Providers = ({children}) => {
   return (
     <>
       <Toaster position="top-center"/>
-      {chilndren}
+      {children}
     </>
   )
 }
