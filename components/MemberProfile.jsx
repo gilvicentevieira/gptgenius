@@ -4,7 +4,6 @@ const MemberProfile = async () => {
     const user = await currentUser()
     const {userId} = auth()
 
-    console.log(user)
     return (
         <div className="px-4 flex items-center gap-2">
             <UserButton afterSignOutUrl="/"/>
@@ -14,4 +13,3 @@ const MemberProfile = async () => {
 }
 
 export default MemberProfile
-MemberProfile
