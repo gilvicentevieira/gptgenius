@@ -1,0 +1,18 @@
+'use client'
+
+import { useQuery } from "@tanstack/react-query"
+import ToursList from "./ToursList"
+
+const ToursPage = async () => {
+    const {data, isPending} = useQuery({
+        queryKey:['tours'],
+        queryFn: ()=>getAllTours()
+      })
+    return (
+        <>
+            {isPending? <span className="loading"></span> : <ToursList data={data}/>}
+        </>
+    )
+}
+
+export default ToursPage
