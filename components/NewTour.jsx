@@ -15,9 +15,9 @@ const NewTour = () => {
 
             const newTour = await generateTourResponse(destination)
             if(newTour){
-                await createNewTour(newTour)
-                queryClient.invalidateQueries({queryKey: ['tours']})
-                return newTour
+                await createNewTour(newTour);
+                queryClient.invalidateQueries({queryKey: ['tours']});
+                return newTour;
             }
             toast.error('No matching city found...')
             return null
