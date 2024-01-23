@@ -1,6 +1,8 @@
 import React from 'react'
 
-const TourInfo = () => {
+const TourInfo = ({tour}) => {
+  console.log(tour)
+
   return (
     <div>
       Tour info
