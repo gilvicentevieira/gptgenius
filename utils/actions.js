@@ -1,6 +1,7 @@
 'use server'
 import OpenAI from "openai"
 import prisma from "./db"
+import { revalidatePath } from "next/cache"
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -143,4 +144,30 @@ export const fetchUserTokensById = async(clerkId)=>{
     })
 
     return result?.tokens
+}
+
+export const generateUserTokensForId = async(clerkId)=>{
+    const result = await prisma.token.create({
+        data: {
+            clerkId
+        }
+    })
+
+    return result?.tokens
+}
+
+export const subtractTokens = async(clerkId, tokens)=>{
+    const result = await prisma.token.update({
+        where: {
+            clerkId
+        },
+        data: {
+            tokens: {
+                decrement: tokens
+            }
+        }
+    })
+
+    revalidatePath('/profile')
+    return result.tokens
 }
