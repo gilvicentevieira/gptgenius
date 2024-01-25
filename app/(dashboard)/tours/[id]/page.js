@@ -3,6 +3,8 @@ import { generateTourImage, getSingleTour } from '@/utils/actions'
 import Image from 'next/image'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import axios from 'axios'
+const url = `https://api.unsplash.com/search/photos?client_id=${process.env.UNSPLASH_API_KEY}&query=`;
 
 const SingleTourPage = async({params}) => {
     const tour = await getSingleTour(params.id)
@@ -11,7 +13,10 @@ const SingleTourPage = async({params}) => {
         redirect('/tours')
     }
 
-    const tourImage = await generateTourImage({city: tour.city, country: tour.country})
+    const {data} = await axios.get(`${url}${tour.city}`)
+    const tourImage = data?.results[0]?.urls?.raw
+    // instead of using OpenAI, let's use unsplash for now
+    //const tourImage = await generateTourImage({city: tour.city, country: tour.country})
 
     return (
         <div>
