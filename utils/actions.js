@@ -20,7 +20,7 @@ export const generateChatResponse = async(chatMessages)=>{
             max_tokens: 300
         })
     
-        return response.choices[0].message
+        return {message: response.choices[0].message, tokens: response.usage.total_tokens}
     }catch(err){
         console.log(err)
         return null
