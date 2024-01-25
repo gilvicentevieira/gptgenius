@@ -134,3 +134,13 @@ export const generateTourImage = async({city, country})=>{
         return null
     }
 }
+
+export const fetchUserTokensById = async(clerkId)=>{
+    const result = await prisma.token.findUnique({
+        where: {
+            clerkId
+        }
+    })
+
+    return result?.tokens
+}
