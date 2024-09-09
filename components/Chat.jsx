@@ -1,6 +1,6 @@
 'use client'
 
-import { fetchUserTokensById, generateChatResponse, subtractTokens } from "@/utils/actions"
+import { generateChatResponse } from "@/utils/actions"
 import { useAuth } from "@clerk/nextjs"
 import { useMutation } from "@tanstack/react-query"
 import { useState } from "react"
@@ -13,11 +13,6 @@ const Chat = () => {
 
     const {mutate, isPending} = useMutation({
       mutationFn: async(query)=>{
-        const currentTokens = await fetchUserTokensById(userId)
-        if(currentTokens<100){
-            toast.error('Token balance too low..')
-            return 
-        }
 
         const response = await generateChatResponse([...messages, query])
         if(!response){
@@ -26,8 +21,6 @@ const Chat = () => {
         }
 
         setMessages((prev)=>[...prev, response.message])
-        const newTokens = await subtractTokens(userId, response.tokens)
-        toast.success(`${newTokens} tokens remaining...`)
       }
     })
 
@@ -43,7 +36,7 @@ const Chat = () => {
       <div className="min-h-[calc(100vh-6rem)] grid grid-rows-[1fr,auto]">
         <div>
           {messages.map(({role, content}, index)=>{
-              const avatar = role == 'user' ? '👤' : '🤖'
+              const avatar = role == 'user' ? '🙍‍♂️' : '֎'
               const bcg = role === 'user' ? 'bg-base-200' : 'bg-base-100'
               return (
                 <div key={index} className={`${bcg} flex py-6 -mx-8 px-8 text-xl leaading-loose border-b border-base-300`}>
