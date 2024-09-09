@@ -1,12 +1,11 @@
 # GPTGenius
 
-###### A ChatGPT like chat and website, using the OpenAI API. And having an extra Tour and Create Tour feature
+###### A ChatGPT like chat and website, using the OpenAI API
 
 This application allows you to:
 - Create an account and login
 - Chat with the OpenAI AI
-- Create a Tour
-- Check your existing Tours
+- Manage your Profile
 
 
 Built with:
@@ -14,7 +13,6 @@ Built with:
 - Javascript
 - TailwindCSS
 - React Query
-- Prisma
 - DaisyUI
 
 
