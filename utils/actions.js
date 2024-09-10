@@ -10,7 +10,7 @@ export const generateChatResponse = async(chatMessages)=>{
     try{
         const response = await openai.chat.completions.create({
             messages: [
-                {role: 'system', content:'You are a helpful assistant'},
+                {role: 'system', content:'You are a helpful assistant. A ChatGPT clone'},
                 ...chatMessages
             ],
             model: 'gpt-3.5-turbo',
